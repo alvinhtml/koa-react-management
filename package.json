@@ -1,0 +1,33 @@
+{
+  "name": "koa-react-management",
+  "version": "1.0.0",
+  "description": "Management system developed with koa and react.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvinhtml/koa-react-management.git"
+  },
+  "keywords": [
+    "koa",
+    "react",
+    "management",
+    "blog"
+  ],
+  "author": "alvinhtml@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alvinhtml/koa-react-management/issues"
+  },
+  "homepage": "https://github.com/alvinhtml/koa-react-management#readme",
+  "dependencies": {
+    "koa": "^2.10.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.12.3",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.1"
+  }
+}

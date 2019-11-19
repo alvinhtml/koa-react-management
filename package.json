@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "rm -rf ./dist && webpack --mode development",
     "start": "webpack-dev-server",
-    "server": "webpack --config ./webpack.server.config.js && hotnode ./dist/server.js",
+    "server": "webpack --config ./webpack.server.config.js",
     "lint": "npx eslint src/**/*.ts",
     "build": "rm -rf ./dist && webpack --mode production"
   },

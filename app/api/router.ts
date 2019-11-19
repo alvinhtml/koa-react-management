@@ -1,15 +1,19 @@
 import Router from 'koa-router';
+
 import User from './models/User.ts';
+import UserController from './controllers/UserController.ts';
+
 
 const user = new Router();
 
 // 获取用户列表
-user.get('/', async (ctx) => {
-  const usersRequest = await User.findAll({
-    attributes: ['id', 'name', 'email']
-  });
-  ctx.body = JSON.stringify(usersRequest);
-})
+user.get('/', UserController.getList)
+// user.get('/', async (ctx) => {
+//   const usersRequest = await User.findAll({
+//     attributes: ['id', 'name', 'email']
+//   });
+//   ctx.body = JSON.stringify(usersRequest);
+// })
 
 // 获取单个用户
 .get('/:id', async (ctx) => {

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "rm -rf ./dist && webpack --mode development",
     "start": "webpack-dev-server",
-    "server": "webpack --config ./webpack.server.config.js",
+    "dev:server": "webpack --config ./webpack.server.config.js",
+    "server:start": "hotnode ./dist/server.js",
     "lint": "npx eslint src/**/*.ts",
     "build": "rm -rf ./dist && webpack --mode production"
   },
@@ -53,6 +54,7 @@
   "dependencies": {
     "@types/koa": "^2.0.51",
     "@types/koa-router": "^7.0.42",
+    "@types/koa-session": "^5.10.1",
     "@types/node": "^12.11.5",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",

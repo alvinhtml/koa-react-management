@@ -28,6 +28,9 @@ class User extends Model<User> {
   type: number
 
   @Column
+  password: string
+
+  @Column
   state: number
 
   @Column

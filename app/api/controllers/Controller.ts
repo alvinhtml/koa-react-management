@@ -31,7 +31,7 @@ export default class Controller {
         console.log(index);
         middleware[index].call(this, context, (err: Error) => {
           if (err) {
-            return console.log('There was an error: ' + err.message);
+            return err;
           }
           iterator.call(this, ++index);
         })

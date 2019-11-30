@@ -23,6 +23,7 @@ const api = new Router();
 // 登陆和注册
 api.get('/login', AuthController.Login);
 api.get('/logout', AuthController.Logout);
+api.get('/register', AuthController.register);
 
 
 // 用户列表

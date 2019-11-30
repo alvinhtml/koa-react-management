@@ -52,12 +52,14 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/koa": "^2.0.51",
     "@types/koa-router": "^7.0.42",
     "@types/koa-session": "^5.10.1",
     "@types/node": "^12.11.5",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
+    "bcryptjs": "^2.4.3",
     "classnames": "^2.2.6",
     "koa": "^2.10.0",
     "koa-bodyparser": "^4.2.1",

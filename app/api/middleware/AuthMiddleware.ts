@@ -1,7 +1,12 @@
 export default function AuthMiddleware(ctx: any, next: Function): void {
 
-  // 登录验证逻辑
-  ctx.logined = true;
+  console.log('ctx.session.logined', ctx.session.logined)
 
-  next();
+  // 登录验证逻辑
+  if (ctx.session.logined) {
+    next();
+  } else {
+    ctx.throw(401, 'password error.');
+    next(new Error('password error.'));
+  }
 }

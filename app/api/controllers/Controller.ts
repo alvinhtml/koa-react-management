@@ -12,30 +12,38 @@ export default class Controller {
       const thisFunction = thisProperty[v];
 
       thisProperty[v] = async (context: any) => {
-        // 运行中间件
-        await this.exucuteMiddleware(middlewares, context, async () => {
-          // 运行子类中的方法,
+        try {
+          // 如果中间件执行成功
+          const middlewareResult = await this.exucuteMiddleware(middlewares, context);
+
+          // 则执行子类中的方法,
           await thisFunction(context);
-        });
+        } catch(err) {
+
+          // 否则抛出异常
+          context.throw(err);
+        }
       }
     })
   }
 
-  // 运行中间件
-  exucuteMiddleware(middleware: Array<Function>, context: any, callback: Function): Promise<void> {
+  exucuteMiddleware(middleware: Array<Function>, context: any): Promise<boolean> {
     return new Promise((resolve, reject) => {
       async function iterator(index: number): Promise<void> {
+        // 所有中间件执行完毕，且无异常时，Promise 状态设为 resolved
         if (index === middleware.length) {
-          return callback && callback().then(resolve);
+          return resolve(true);
         }
-        console.log(index);
-        middleware[index].call(this, context, (err: Error) => {
-          if (err) {
-            return err;
-          }
-          iterator.call(this, ++index);
-        })
+        try {
+          middleware[index].call(this, context, () => {
+            iterator.call(this, ++index);
+          })
+        } catch(err) {
+          // 执行中间件出现错误时，抛出异常
+          return reject(err);
+        }
       }
+
       iterator.call(this, 0);
     });
   }

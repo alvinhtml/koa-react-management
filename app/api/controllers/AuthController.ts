@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs';
-import {bcryptHash} from '../utils/bcrypt.ts';
 import Controller from './Controller.ts';
 import AuthMiddleware from '../middleware/AuthMiddleware.ts';
 import User from '../models/User.ts';

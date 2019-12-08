@@ -6,7 +6,6 @@ export default function AuthMiddleware(ctx: any, next: Function): void {
   if (ctx.session.logined) {
     next();
   } else {
-    ctx.throw(401, 'password error.');
-    next(new Error('password error.'));
+    ctx.throw(401, 'User not logged in.');
   }
 }

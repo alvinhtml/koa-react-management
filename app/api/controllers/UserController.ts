@@ -10,8 +10,12 @@ class UserController extends Controller {
   }
 
   async getList(ctx: any) {
+    const {limit = 20, page = 1} = ctx.query;
+
     const usersRequest = await User.findAll({
-      attributes: ['id', 'name', 'email', 'photo', 'type', 'state', 'created_at', 'updated_at']
+      attributes: ['id', 'name', 'email', 'photo', 'type', 'state', 'created_at', 'updated_at'],
+      offset: (page - 1) * parseInt(limit, 10),
+      limit: parseInt(limit, 10)
     });
 
     ctx.body = JSON.stringify(usersRequest);

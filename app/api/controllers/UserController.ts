@@ -17,7 +17,7 @@ class UserController extends Controller {
       offset: (page - 1) * parseInt(limit, 10),
       limit: parseInt(limit, 10)
     });
-
+    ctx.type = 'application/json';
     ctx.body = JSON.stringify(usersRequest);
   }
 }

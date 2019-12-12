@@ -54,6 +54,7 @@ class AuthController extends Controller {
     ctx.session.email = undefined;
     ctx.session.logined = false;
 
+    ctx.type = 'application/json';
     ctx.body = JSON.stringify({
       message: 'logout!'
     });
@@ -84,6 +85,7 @@ class AuthController extends Controller {
         remember_token: ''
       });
 
+      ctx.type = 'application/json';
       ctx.body = JSON.stringify({
         message: 'Registered !',
         data: createRequest

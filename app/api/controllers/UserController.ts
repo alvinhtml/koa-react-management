@@ -10,7 +10,7 @@ class UserController extends Controller {
   }
 
   async getList(ctx: any) {
-    const {limit = 20, page = 1} = ctx.query;
+    const {limit = 10, page = 1} = ctx.query;
 
     const usersRequest = await User.findAndCountAll({
       attributes: ['id', 'name', 'email', 'photo', 'type', 'state', 'created_at', 'updated_at'],
@@ -18,6 +18,7 @@ class UserController extends Controller {
       limit: parseInt(limit, 10)
     });
 
+    ctx.type = 'application/json; charset=UTF-8';
     ctx.set('x-total', usersRequest.count);
     ctx.body = JSON.stringify(usersRequest.rows);
   }

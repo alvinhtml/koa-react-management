@@ -10,13 +10,28 @@ class UserController extends Controller {
   }
 
   async getList(ctx: any) {
-    const {limit = 10, page = 1} = ctx.query;
+    const {limit = 10, page = 1, order} = ctx.query;
 
-    const usersRequest = await User.findAndCountAll({
+    const query = {
       attributes: ['id', 'name', 'email', 'photo', 'type', 'state', 'created_at', 'updated_at'],
       offset: (page - 1) * parseInt(limit, 10),
       limit: parseInt(limit, 10)
-    });
+    }
+
+    if (order) {
+      const [orderName, orderType]: Array<string> = order.split(',');
+
+      Object.defineProperty(query, 'order', {
+        configurable: true,
+        enumerable: true,
+        value: [
+          [orderName, orderType]
+        ],
+        writable: true
+      })
+    }
+
+    const usersRequest = await User.findAndCountAll(query);
 
     ctx.type = 'application/json; charset=UTF-8';
     ctx.set('x-total', usersRequest.count);
